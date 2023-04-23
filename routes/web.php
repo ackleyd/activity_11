@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuperPowersController;
+use App\Http\Controllers\ParentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::resource("superpowers", SuperPowersController::class)->middleware('auth');
+Route::resource("parents", ParentsController::class)->middleware('auth');
 require __DIR__.'/auth.php';
