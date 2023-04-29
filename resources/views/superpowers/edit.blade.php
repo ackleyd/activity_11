@@ -1,30 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Superpowers</title>
-</head>
-<body>
-    <h1>Edit Superpowers</h1>
+@extends('layouts.master')
 
-    <form action="{{ route('superpowers.update', $superpower->id) }}" method="post">
-        @method('put')
-        @csrf
-        
-        <label for="name">Name *</label>
-        <input type="text" name="name" value="{{ $superpower->name }}">
+@section('content')
 
-        <br><br>
-        
-        <label for="description">Description</label> <br>
-        <textarea name="description" cols="50" rows="5">{{ $superpower->description }}</textarea>
-       
+    <div class="container">
 
+        <form action="{{ route('superpowers.update', $superpower->id) }}" method="post">
+            @method('put')
+            @csrf
 
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name *</label>
+                    <input type="text" name="name" class="form-control form-control-lg" value="{{ $superpower->name }}">
+                </div>
 
-        <button type="submit">Edit Superpower</button>
-    </form>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="description" name="description" class="form-control form-control-lg" cols="50" rows="5">{{ $superpower->description }}</textarea>
+                </div>
+                
+                <div class=" col text-end">
+                <br><button  type="submit" class="btn btn-danger btn-lg btn-block">Edit Superpower</button> <br>
+                </div>
+
+        </form>
+
+    </div>
+
+    
 </body>
 </html>
+
+@endsection

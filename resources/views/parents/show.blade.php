@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parent's Info</title>
-</head>
-<body>
+@extends('layouts.master')
 
-    <h1>{{ $parents->name }}</h1>
+@section('content')
+
+<div class="container">
+
+    <h1 class="text-center">{{ $parents->name }}</h1>
     <p>{{ $parents->gender }}</p>
 
-    <a href="{{ route('parents.edit', $parents->id) }}">Edit Parent</a>
-    
-    <form action="{{ route('parents.destroy', $parents->id) }}" method="post">
-        @method('delete')
-        @csrf
+</div>
 
-        <br><button type="submit" onclick="return confirm ('Are you sure you want to delete this record?')">Delete Parent</button>
+    @section('botones')
+
+    <div class="col text-end">
+        <a href="{{ route('parents.edit', $parents->id) }}" class="btn btn-warning btn-lg btn-block">Edit Parent</a> <br>
+    </div><br>
+
+    <form action="{{ route('parents.destroy', $parents->id) }}" method="post">
+                @method('delete')
+                @csrf
+
+                 <div class="col text-end">
+                <!---- <input type="hidden" name=""> ---->
+                <button class="btn btn-danger btn-lg btn-block" type="submit" onclick="return confirm('Are you sure you want to delete this record?')">Delete Parent</button>
+                </div><br>
     </form>
+    @endsection
 
 </body>
 </html>
+
+@endsection

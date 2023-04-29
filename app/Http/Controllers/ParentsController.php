@@ -10,9 +10,7 @@ use App\Models\parents;
 
 class ParentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $parents = parents::where('user_id', Auth::id())
@@ -21,20 +19,18 @@ class ParentsController extends Controller
             -> get();
 
         //dd($parents);
-        return view('parents.index', compact('parents'));    
+        $page_title = "Parents";
+        return view('parents.index', compact('parents', 'page_title'));    
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        return view ('parents.create');
+        $page_title = "Create Parents";
+        return view('parents.create', compact('page_title'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         parents::create([
@@ -58,7 +54,8 @@ class ParentsController extends Controller
             ->select('id','name','gender')
             -> firstOrFail();
 
-        return view('parents.show', compact('parents'));    
+            $page_title = "Show Parents";
+            return view('parents.show', compact('parents','page_title'));    
     }
 
     /**
@@ -72,7 +69,8 @@ class ParentsController extends Controller
             ->select('id','name','gender')
             -> firstOrFail();
 
-        return view('parents.edit', compact('parent'));   
+            $page_title = "Edit Parents";
+            return view('parents.edit', compact('parent','page_title'));   
     }
 
     /**

@@ -1,31 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Parent</title>
-</head>
-<body>
+@extends('layouts.master')
+
+@section('content')
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-9 col-lg text-start">
+
+            <form action="{{  route('parents.store') }}" method="post">
+                @csrf
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name *</label>
+                    <input type="text" name="name" class="form-control form-control-lg">
+                </div>
+
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label><br>
+                    <select name="gender" class="form-control form-control-lg">
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="NA">NA</option>
+                    </select>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-lg">Create Parent</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
     
-    <h1>Create Parent</h1>
 
-    <form action="{{  route('parents.store') }}" method="post">
-        @csrf
-        <label for="name">Name *</label>
-        <input type="text" name="name">
 
-        <br><br>
-        <label for="gender">Gender</label><br>
-        <select name="gender">
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-            <option value="NA">NA</option>
-        </select>
-
-        <br><br>
-        <button type="submit">Create Parent</button>
-    </form>
+</div> 
 
 </body>
 </html>
+
+@endsection

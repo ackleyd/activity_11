@@ -1,23 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superpower's name</title>
-</head>
-<body>
-    <h1>{{ $superpowers->name }}</h1>
-    <p>{{ $superpowers->description }}</p>
+@extends('layouts.master')
 
-    <a href="{{ route('superpowers.edit', $superpowers->id) }}">Edit superpower</a> <br><br>
-    <form action="{{ route('superpowers.destroy', $superpowers->id) }}" method="post">
+@section('content')
+
+    <div class="container">
+
     
-    @method('delete')
-    @csrf
+    <h1 class="text-center">{{ $superpowers->name }}</h1>
+    <p>{{ $superpowers->description }}</p><br>
 
-    <br><button type="submit" onclick="return confirm('Are you sure you want to delete this record?')">Delete superpower</button>
+    </div>
+    @section('botones')
+
+    <div class="col text-end">
+        <a href="{{ route('superpowers.edit', $superpowers->id) }}" class="btn btn-warning btn-lg btn-block">Edit superpower</a> <br>
+    </div><br>
+
+    <form action="{{ route('superpowers.destroy', $superpowers->id) }}" method="post">
+                @method('delete')
+                @csrf
+
+                 <div class="col text-end">
+                <!---- <input type="hidden" name=""> ---->
+                <button class="btn btn-danger btn-lg btn-block" type="submit" onclick="return confirm('Are you sure you want to delete this record?')">Delete superpower</button>
+                </div><br>
     </form>
-
+    @endsection
+ 
 </body>
 </html>
+
+@endsection
